@@ -1,0 +1,1 @@
+Rút thăm trúng thưởng
