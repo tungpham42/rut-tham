@@ -34,12 +34,14 @@ const Wheel = ({
   const [isFinished, setFinished] = useState(false);
   let timerHandle = 0;
   const timerDelay = segments.length;
-  let angleCurrent = 0;
+  let angleCurrent = Math.random() * Math.PI * 2; // Random initial angle
   let angleDelta = 0;
   let canvasContext = null;
-  let maxSpeed = Math.PI / segments.length;
-  const upTime = segments.length * upDuration;
-  const downTime = segments.length * downDuration;
+  // Randomize maxSpeed slightly for each spin
+  let maxSpeed = Math.PI / segments.length + (Math.random() * 0.1 - 0.05);
+  // Add slight variation to durations
+  const upTime = segments.length * (upDuration + Math.random() * 50);
+  const downTime = segments.length * (downDuration + Math.random() * 200);
   let spinStart = 0;
   let frames = 0;
   const centerX = size + 20;
@@ -72,10 +74,12 @@ const Wheel = ({
   };
 
   const spin = () => {
+    if (isStarted) return; // Prevent multiple spins
     isStarted = true;
+    // Reset maxSpeed with new randomization for each spin
+    maxSpeed = Math.PI / segments.length + (Math.random() * 0.1 - 0.05);
     if (timerHandle === 0) {
       spinStart = new Date().getTime();
-      maxSpeed = Math.PI / segments.length;
       frames = 0;
       timerHandle = window.setInterval(onTimerTick, timerDelay);
     }
