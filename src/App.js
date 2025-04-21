@@ -62,7 +62,7 @@ function App() {
             contrastColor="#fff"
             buttonText="Quay"
             isOnlyOnce={true}
-            size={Math.min(window.innerWidth, window.innerHeight) * 0.4}
+            size={Math.min(window.innerWidth, window.innerHeight) * 0.42}
             upDuration={100}
             downDuration={1000}
             fontFamily="Arial"
